@@ -1,3 +1,4 @@
+import Cart from "./components/Cart";
 import About from "./components/About";
 import Routine from "./components/Routine";
 import Footer from "./components/Footer";
@@ -8,10 +9,32 @@ import "./App.css";
 import Navbar from "./components/Navbar";
 import ProductCard from "./components/ProductCard";
 import Hero from "./components/Hero";
- function App() {
+import { useState } from "react";
+
+function App() {
+  const [darkMode, setDarkMode] = useState(false);
+const [cartItems, setCartItems] = useState([]);
+const [showCart, setShowCart] = useState(false);
+
+const addToCart = (product) => {
+  setCartItems([...cartItems, product]);
+};
+
+const clearCart = () => {
+  setCartItems([]);
+};
   return (
-    <div>
-      <Navbar />
+  <div className={darkMode ? "dark-mode" : ""}>
+      <Navbar
+  cartCount={cartItems.length}
+  onCartClick={() => setShowCart(true)}
+/>
+      <button
+  onClick={() => setDarkMode(!darkMode)}
+  className="theme-btn"
+>
+  {darkMode ? "☀️ Light Mode" : "🌙 Dark Mode"}
+</button>
       <Hero />
  <WhyChooseUs />
  <About />
@@ -19,10 +42,16 @@ import Hero from "./components/Hero";
  <h2 className="product-heading">Featured Products</h2>
       <div className="products">
         <ProductCard
-          name="Glow Serum"
-          price="₹499"
-          image="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9"
-        />
+  name="Glow Serum"
+  price="₹499"
+  image="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9"
+  onAddToCart={() =>
+    addToCart({
+      name: "Glow Serum",
+      price: 499
+    })
+  }
+/>
 
         <ProductCard
           name="Clay Detox Mask"
@@ -86,8 +115,17 @@ import Hero from "./components/Hero";
       <Routine />
       <Reviews />
       <Newsletter />
+      <Cart
+  
+  cartItems={cartItems}
+  clearCart={clearCart}
+  showCart={showCart}
+  closeCart={() => setShowCart(false)}
+/>
+
       <Footer />
     </div>
+
     
   );
 }

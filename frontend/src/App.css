@@ -268,3 +268,66 @@ button:hover {
   line-height: 1.8;
   color: #555;
 }
+.theme-btn {
+  position: fixed;
+  right: 20px;
+  top: 90px;
+  z-index: 1000;
+}
+
+.dark-mode {
+  background-color: #1e1e1e;
+  color: white;
+}
+.dark-mode {
+  background-color: #121212;
+  color: white;
+}
+
+.dark-mode nav {
+  background-color: #1e1e1e;
+}
+
+.dark-mode .card,
+.dark-mode .feature-card,
+.dark-mode .review-card,
+.dark-mode .routine-card {
+  background-color: #2a2a2a;
+  color: white;
+}
+
+.dark-mode .newsletter,
+.dark-mode .about,
+.dark-mode .why-choose,
+.dark-mode .routine {
+  background-color: #1a1a1a;
+}
+
+.dark-mode .footer {
+  background-color: #111;
+}
+.cart {
+  background: white;
+  padding: 30px;
+  margin: 40px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+.dark-mode .cart {
+  background: #2a2a2a;
+  color: white;
+}
+.cart-sidebar {
+  position: fixed;
+  top: 0;
+  right: -350px;
+  width: 320px;
+  height: 100%;
+  transition: 0.3s;
+}
+
+.cart-sidebar.open {
+  right: 0;
+}

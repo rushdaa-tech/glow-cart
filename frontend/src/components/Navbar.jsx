@@ -1,4 +1,4 @@
-function Navbar() {
+function Navbar({ cartCount, onCartClick }) {
   return (
     <nav>
       <h2>GlowCart ✨</h2>
@@ -6,7 +6,9 @@ function Navbar() {
       <ul>
         <li>Home</li>
         <li>Shop</li>
-        <li>Cart</li>
+        <li onClick={onCartClick}>
+  Cart ({cartCount})
+</li>
       </ul>
     </nav>
   );

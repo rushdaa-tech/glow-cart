@@ -7,7 +7,9 @@ function ProductCard(props) {
 
       <p>{props.price}</p>
 
-      <button>Add to Cart</button>
+      <button onClick={props.onAddToCart}>
+        Add to Cart
+      </button>
     </div>
   );
 }
