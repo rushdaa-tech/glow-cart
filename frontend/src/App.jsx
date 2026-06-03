@@ -17,11 +17,67 @@ const [cartItems, setCartItems] = useState([]);
 const [showCart, setShowCart] = useState(false);
 
 const addToCart = (product) => {
-  setCartItems([...cartItems, product]);
+  const existingProduct = cartItems.find(
+    (item) => item.name === product.name
+  );
+
+  if (existingProduct) {
+    setCartItems(
+      cartItems.map((item) =>
+        item.name === product.name
+          ? {
+              ...item,
+              quantity: item.quantity + 1,
+            }
+          : item
+      )
+    );
+  } else {
+    setCartItems([
+      ...cartItems,
+      {
+        ...product,
+        quantity: 1,
+      },
+    ]);
+  }
 };
 
 const clearCart = () => {
   setCartItems([]);
+};
+const removeItem = (indexToRemove) => {
+  setCartItems(
+    cartItems.filter(
+      (_, index) => index !== indexToRemove
+    )
+  );
+};
+const increaseQuantity = (productName) => {
+  setCartItems(
+    cartItems.map((item) =>
+      item.name === productName
+        ? {
+            ...item,
+            quantity: item.quantity + 1,
+          }
+        : item
+    )
+  );
+};
+const decreaseQuantity = (productName) => {
+  setCartItems(
+    cartItems
+      .map((item) =>
+        item.name === productName
+          ? {
+              ...item,
+              quantity: item.quantity - 1,
+            }
+          : item
+      )
+      .filter((item) => item.quantity > 0)
+  );
 };
   return (
   <div className={darkMode ? "dark-mode" : ""}>
@@ -48,7 +104,8 @@ const clearCart = () => {
   onAddToCart={() =>
     addToCart({
       name: "Glow Serum",
-      price: 499
+      price: 499,
+       image: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9"
     })
   }
 />
@@ -116,13 +173,14 @@ const clearCart = () => {
       <Reviews />
       <Newsletter />
       <Cart
-  
   cartItems={cartItems}
   clearCart={clearCart}
+  removeItem={removeItem}
+  increaseQuantity={increaseQuantity}
+  decreaseQuantity={decreaseQuantity}
   showCart={showCart}
   closeCart={() => setShowCart(false)}
 />
-
       <Footer />
     </div>
 
