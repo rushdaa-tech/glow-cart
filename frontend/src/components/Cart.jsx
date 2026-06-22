@@ -6,6 +6,7 @@ function Cart({
   decreaseQuantity,
   showCart,
   closeCart,
+  goToCheckout,
 }) {
   const total = cartItems.reduce(
   (sum, item) =>
@@ -69,10 +70,13 @@ function Cart({
 ))}
 
           <h3>Total: ₹{total}</h3>
-          <button className="checkout-btn">
+          
+          <button
+  className="checkout-btn"
+  onClick={goToCheckout}
+>
   Proceed to Checkout
 </button>
-
           <button onClick={clearCart}>
             Clear Cart
           </button>

@@ -35,12 +35,10 @@ li {
   background-color: white;
   width: 250px;
   padding: 20px;
-  margin: 40px;
-  border-radius: 15px;
+  border-radius: 20px;
   text-align: center;
-
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
 }
 
 .card:hover {
@@ -50,16 +48,19 @@ li {
 
 .card img {
   width: 100%;
-  border-radius: 10px;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 15px;
 }
 
 button {
   background-color: #ff4d8d;
   color: white;
   border: none;
-  padding: 10px 15px;
-  border-radius: 8px;
+  padding: 12px 18px;
+  border-radius: 12px;
   cursor: pointer;
+  transition: 0.3s;
 }
 .products {
   display: flex;
@@ -74,10 +75,10 @@ button {
 }
 
 .hero h1 {
-  font-size: 50px;
+  font-size: 55px;
   color: #ff4d8d;
+  text-shadow: 0 0 20px rgba(255,77,141,0.25);
 }
-
 .hero p {
   font-size: 18px;
   margin-bottom: 20px;
@@ -368,4 +369,29 @@ button:hover {
   padding: 12px;
   border-radius: 10px;
   font-weight: bold;
+}
+.product-heading {
+  text-align: center;
+  color: #e58db2;
+  font-size: 32px;
+  margin-top: 50px;
+}
+html {
+  scroll-behavior: smooth;
+}
+.checkout-page {
+  max-width: 600px;
+  margin: 50px auto;
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.checkout-page input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 10px;
+  border: 1px solid #ddd;
 }

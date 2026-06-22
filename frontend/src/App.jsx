@@ -1,3 +1,4 @@
+import Checkout from "./components/Checkout";
 import Cart from "./components/Cart";
 import About from "./components/About";
 import Routine from "./components/Routine";
@@ -15,6 +16,7 @@ function App() {
   const [darkMode, setDarkMode] = useState(false);
 const [cartItems, setCartItems] = useState([]);
 const [showCart, setShowCart] = useState(false);
+const [showCheckout, setShowCheckout] = useState(false);
 
 const addToCart = (product) => {
   const existingProduct = cartItems.find(
@@ -79,7 +81,12 @@ const decreaseQuantity = (productName) => {
       .filter((item) => item.quantity > 0)
   );
 };
+  if (showCheckout) {
   return (
+    <Checkout cartItems={cartItems} />
+  );
+}
+return (
   <div className={darkMode ? "dark-mode" : ""}>
       <Navbar
   cartCount={cartItems.length}
@@ -180,7 +187,12 @@ const decreaseQuantity = (productName) => {
   decreaseQuantity={decreaseQuantity}
   showCart={showCart}
   closeCart={() => setShowCart(false)}
+  goToCheckout={() => {
+  setShowCheckout(true);
+  setShowCart(false);
+}}
 />
+ 
       <Footer />
     </div>
 
