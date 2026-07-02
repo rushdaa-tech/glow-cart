@@ -1,3 +1,4 @@
+import OrderSuccess from "./components/OrderSuccess";
 import Wishlist from "./components/Wishlist";
 import Checkout from "./components/Checkout";
 import Cart from "./components/Cart";
@@ -27,6 +28,8 @@ const [showCart, setShowCart] = useState(false);
 const [showWishlist, setShowWishlist] = useState(false);
 const [searchTerm, setSearchTerm] = useState("");
 const [showCheckout, setShowCheckout] = useState(false);
+const [orderPlaced, setOrderPlaced] =
+  useState(false);
 const [wishlist, setWishlist] = useState(() => {
   const savedWishlist =
     localStorage.getItem("wishlist");
@@ -239,9 +242,15 @@ const moveToCart = (productName) => {
     image: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9",
   },
 ];
+if (orderPlaced) {
+  return <OrderSuccess />;
+}
 if (showCheckout) {
   return (
-    <Checkout cartItems={cartItems} />
+    <Checkout
+      cartItems={cartItems}
+      setOrderPlaced={setOrderPlaced}
+    />
   );
 }
 return (

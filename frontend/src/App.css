@@ -323,10 +323,10 @@ button:hover {
 .cart-sidebar {
   position: fixed;
   top: 0;
-  right: -350px;
-  width: 320px;
-  height: 100%;
-  transition: 0.3s;
+  right: -400px;
+  width: 350px;
+  height: 100vh;
+  overflow-y: auto;
 }
 
 .cart-sidebar.open {

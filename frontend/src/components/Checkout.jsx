@@ -1,4 +1,8 @@
-function Checkout({ cartItems }) {
+
+function Checkout({
+  cartItems,
+  setOrderPlaced,
+}) {
   const total = cartItems.reduce(
     (sum, item) => sum + item.price * item.quantity,
     0
@@ -28,7 +32,12 @@ function Checkout({ cartItems }) {
         placeholder="Enter Address"
       />
 
-      <button>
+      <button
+        onClick={() => {
+          console.log("clicked");
+          setOrderPlaced(true);
+        }}
+      >
         Place Order
       </button>
     </div>
