@@ -4,6 +4,7 @@ function Cart({
   removeItem,
   increaseQuantity,
   decreaseQuantity,
+  moveToWishlist,
   showCart,
   closeCart,
   goToCheckout,
@@ -66,6 +67,11 @@ function Cart({
     <button onClick={() => removeItem(index)}>
       Remove
     </button>
+    <button
+  onClick={() => moveToWishlist(item)}
+>
+  ❤️ Move to Wishlist
+</button>
   </div>
 ))}
 

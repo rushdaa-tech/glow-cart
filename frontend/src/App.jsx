@@ -1,3 +1,4 @@
+import Wishlist from "./components/Wishlist";
 import Checkout from "./components/Checkout";
 import Cart from "./components/Cart";
 import About from "./components/About";
@@ -10,16 +11,54 @@ import "./App.css";
 import Navbar from "./components/Navbar";
 import ProductCard from "./components/ProductCard";
 import Hero from "./components/Hero";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
-const [cartItems, setCartItems] = useState([]);
+const [cartItems, setCartItems] = useState(() => {
+  const savedCart =
+    localStorage.getItem("cart");
+
+  return savedCart
+    ? JSON.parse(savedCart)
+    : [];
+});
 const [showCart, setShowCart] = useState(false);
+const [showWishlist, setShowWishlist] = useState(false);
 const [searchTerm, setSearchTerm] = useState("");
 const [showCheckout, setShowCheckout] = useState(false);
+const [wishlist, setWishlist] = useState(() => {
+  const savedWishlist =
+    localStorage.getItem("wishlist");
 
+  return savedWishlist
+    ? JSON.parse(savedWishlist)
+    : [];
+});
+useEffect(() => {
+  localStorage.setItem(
+    "cart",
+    JSON.stringify(cartItems)
+  );
+}, [cartItems]);
+useEffect(() => {
+  localStorage.setItem(
+    "wishlist",
+    JSON.stringify(wishlist)
+  );
+}, [wishlist]);
+const [notification, setNotification] = useState("");
+useEffect(() => {
+  if (notification) {
+    const timer = setTimeout(() => {
+      setNotification("");
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }
+}, [notification]);
 const addToCart = (product) => {
+  setNotification(`🛒 ${product.name} added to cart`);
   const existingProduct = cartItems.find(
     (item) => item.name === product.name
   );
@@ -81,6 +120,67 @@ const decreaseQuantity = (productName) => {
       )
       .filter((item) => item.quantity > 0)
   );
+};
+const toggleWishlist = (productName) => {
+  if (wishlist.includes(productName)) {
+    setNotification(
+      `💔 Removed ${productName}`
+    );
+
+    setWishlist(
+      wishlist.filter(
+        (item) => item !== productName
+      )
+    );
+  } else {
+    setNotification(
+      `❤️ Added ${productName}`
+    );
+
+    setWishlist([
+      ...wishlist,
+      productName,
+    ]);
+  }
+};
+const moveToWishlist = (product) => {
+  // Add to wishlist if not already there
+  if (!wishlist.includes(product.name)) {
+    setWishlist([
+      ...wishlist,
+      product.name,
+    ]);
+  }
+
+  // Remove from cart
+  setCartItems(
+    cartItems.filter(
+      (item) => item.name !== product.name
+    )
+  );
+
+  setNotification(
+    `❤️ Moved ${product.name} to wishlist`
+  );
+};
+const moveToCart = (productName) => {
+  const product = products.find(
+    (item) => item.name === productName
+  );
+
+  if (product) {
+    addToCart(product);
+
+    setWishlist(
+      wishlist.filter(
+        (item) => item !== productName
+      )
+    );
+
+    setNotification(
+      `🛒 Moved ${productName} to cart`
+    );
+  }
 };
   const products = [
   {
@@ -146,9 +246,16 @@ if (showCheckout) {
 }
 return (
   <div className={darkMode ? "dark-mode" : ""}>
+    {notification && (
+  <div className="notification">
+    {notification}
+  </div>
+)}
       <Navbar
   cartCount={cartItems.length}
+  wishlistCount={wishlist.length}
   onCartClick={() => setShowCart(true)}
+  onWishlistClick={() => setShowWishlist(true)}
 />
       <button
   onClick={() => setDarkMode(!darkMode)}
@@ -179,14 +286,16 @@ return (
   )
   .map((product) => (
   <ProductCard
-    key={product.name}
-    name={product.name}
-    price={`₹${product.price}`}
-    image={product.image}
-    onAddToCart={() =>
-      addToCart(product)
-    }
-  />
+  key={product.name}
+  name={product.name}
+  price={`₹${product.price}`}
+  image={product.image}
+  onAddToCart={() => addToCart(product)}
+  isFavorite={wishlist.includes(product.name)}
+  onToggleFavorite={() =>
+    toggleWishlist(product.name)
+  }
+/>
 ))}
       </div>
       <Routine />
@@ -198,12 +307,21 @@ return (
   removeItem={removeItem}
   increaseQuantity={increaseQuantity}
   decreaseQuantity={decreaseQuantity}
+  moveToWishlist={moveToWishlist}
   showCart={showCart}
   closeCart={() => setShowCart(false)}
   goToCheckout={() => {
-  setShowCheckout(true);
-  setShowCart(false);
-}}
+    setShowCheckout(true);
+    setShowCart(false);
+  }}
+/>
+<Wishlist
+  wishlist={wishlist}
+  showWishlist={showWishlist}
+  closeWishlist={() =>
+    setShowWishlist(false)
+  }
+  moveToCart={moveToCart}
 />
  
       <Footer />
