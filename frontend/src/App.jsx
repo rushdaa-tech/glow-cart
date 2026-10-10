@@ -1,3 +1,4 @@
+import OrderHistory from "./components/OrderHistory";
 import OrderSuccess from "./components/OrderSuccess";
 import Wishlist from "./components/Wishlist";
 import Checkout from "./components/Checkout";
@@ -38,6 +39,7 @@ function App() {
   const [searchTerm, setSearchTerm] = useState("");
   const [showCheckout, setShowCheckout] = useState(false);
   const [orderPlaced, setOrderPlaced] = useState(false);
+  const [showOrderHistory, setShowOrderHistory] = useState(false);
 
   const [wishlist, setWishlist] = useState(() => {
     const savedWishlist = localStorage.getItem("wishlist");
@@ -209,8 +211,36 @@ function App() {
   ];
 
   if (orderPlaced) {
-    return <OrderSuccess />;
-  }
+  return (
+    <div className={darkMode ? "dark-mode" : ""}>
+      <OrderSuccess />
+      <button onClick={() => {
+        setOrderPlaced(false);
+        setShowCheckout(false);
+        setCartItems([]);
+      }}>
+        Continue Shopping
+      </button>
+      <button onClick={() => {
+        setOrderPlaced(false);
+        setShowOrderHistory(true);
+      }}>
+        View Order History
+      </button>
+    </div>
+  );
+}
+
+if (showOrderHistory) {
+  return (
+    <div className={darkMode ? "dark-mode" : ""}>
+      <OrderHistory />
+      <button onClick={() => setShowOrderHistory(false)}>
+        Back to Shop
+      </button>
+    </div>
+  );
+}
 
   if (showCheckout) {
     return (
@@ -228,7 +258,9 @@ function App() {
           {notification}
         </div>
       )}
-
+<button onClick={() => setShowOrderHistory(true)}>
+  📦 My Orders
+</button>
      
 <Navbar
   cartCount={cartItems.length}
