@@ -229,16 +229,21 @@ function App() {
         </div>
       )}
 
-      <Navbar
-        cartCount={cartItems.length}
-        wishlistCount={wishlist.length}
-        onCartClick={() => setShowCart(true)}
-        onWishlistClick={() => setShowWishlist(true)}
-       onAuthClick={() => {
-  console.log("LOGIN CLICKED!");
-  setShowAuth(true);
-}}
-      />
+     
+<Navbar
+  cartCount={cartItems.length}
+  wishlistCount={wishlist.length}
+  onCartClick={() => setShowCart(true)}
+  onWishlistClick={() => setShowWishlist(true)}
+  onAuthClick={() => setShowAuth(true)}
+  user={user}
+  onLogout={() => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    setUser(null);
+  }}
+/>
+
 
       {showAuth && (
         <Auth
