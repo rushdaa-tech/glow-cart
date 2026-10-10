@@ -3,6 +3,7 @@ function Navbar({
   wishlistCount,
   onCartClick,
   onWishlistClick,
+  onAuthClick,
 }) {
   return (
     <nav>
@@ -10,7 +11,6 @@ function Navbar({
 
       <ul>
         <li>Home</li>
-
         <li>Shop</li>
 
         <li onClick={onCartClick}>
@@ -18,8 +18,12 @@ function Navbar({
         </li>
 
         <li onClick={onWishlistClick}>
-  ❤️ {wishlistCount}
-</li>
+          ❤️ {wishlistCount}
+        </li>
+
+        <li onClick={onAuthClick} style={{ cursor: "pointer" }}>
+          👤 Login
+        </li>
       </ul>
     </nav>
   );
