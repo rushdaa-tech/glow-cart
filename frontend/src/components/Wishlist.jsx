@@ -1,3 +1,6 @@
+ 
+import "./Wishlist.css";
+
 function Wishlist({
   wishlist,
   showWishlist,
@@ -6,33 +9,35 @@ function Wishlist({
 }) {
   return (
     <div
-      className={`cart-sidebar ${
-        showWishlist ? "open" : ""
-      }`}
+       className={`cart-sidebar wishlist-sidebar ${
+  showWishlist ? "open" : ""
+}`}
     >
       <button
-        className="close-btn"
+        className="wishlist-close-btn"
         onClick={closeWishlist}
+        aria-label="Close wishlist"
       >
-        ✖
+        ✕
       </button>
 
       <h2>❤️ Wishlist</h2>
 
       {wishlist.length === 0 ? (
-        <p>No favorites yet</p>
+        <p className="wishlist-empty">No favorites yet ♡</p>
       ) : (
         wishlist.map((item, index) => (
-  <div key={index} className="cart-item">
-    <p>❤️ {item}</p>
+          <div key={`${item}-${index}`} className="wishlist-item">
+            <p>❤️ {typeof item === "string" ? item : item.name}</p>
 
-    <button
-      onClick={() => moveToCart(item)}
-    >
-      🛒 Move to Cart
-    </button>
-  </div>
-))
+            <button
+              className="wishlist-move-btn"
+              onClick={() => moveToCart(item)}
+            >
+              🛒 Move to Cart
+            </button>
+          </div>
+        ))
       )}
     </div>
   );

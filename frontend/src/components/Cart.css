@@ -1,0 +1,92 @@
+.cart-sidebar {
+  position: fixed;
+  top: 76px;
+  right: 0;
+  width: 380px;
+  max-width: 92vw;
+  height: calc(100vh - 76px);
+  padding: 24px 18px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  background: #fffdfb;
+  color: #352a25;
+  box-shadow: -8px 0 28px rgba(50, 35, 25, 0.12);
+  z-index: 2000;
+  transform: translateX(100%);
+  visibility: hidden;
+  transition: transform 0.3s ease, visibility 0.3s ease;
+}
+
+.cart-sidebar.open {
+  transform: translateX(0);
+  visibility: visible;
+}
+
+.cart-sidebar h2 {
+  margin: 8px 0 20px;
+}
+
+.cart-sidebar .close-btn {
+  display: block;
+  margin-left: auto;
+  border: none;
+  background: transparent;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.cart-sidebar .cart-item {
+  padding: 14px 0;
+  border-bottom: 1px solid #f0e5df;
+}
+
+.cart-sidebar .cart-product {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cart-sidebar .cart-image {
+  width: 70px;
+  height: 80px;
+  flex-shrink: 0;
+  object-fit: contain;
+  border-radius: 10px;
+  background: #f7f0eb;
+}
+
+.cart-sidebar .quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 8px 0;
+}
+
+.cart-sidebar button {
+  cursor: pointer;
+}
+
+.cart-sidebar .cart-item > button,
+.cart-sidebar .checkout-btn,
+.cart-sidebar > button:not(.close-btn) {
+  padding: 10px 12px;
+  margin: 5px 3px 5px 0;
+  border: none;
+  border-radius: 20px;
+  background: #ff4788;
+  color: white;
+  font-size: 12px;
+}
+
+.cart-sidebar .checkout-btn {
+  width: 100%;
+  margin: 16px 0 8px;
+  padding: 13px;
+  background: #ad7967;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.cart-sidebar h3 {
+  margin-top: 20px;
+}

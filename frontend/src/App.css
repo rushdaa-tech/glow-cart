@@ -269,12 +269,26 @@ button:hover {
   line-height: 1.8;
   color: #555;
 }
+
 .theme-btn {
-  position: fixed;
-  right: 20px;
-  top: 90px;
-  z-index: 1000;
+  position: static;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 14px;
+  margin: 0;
+  border: 1px solid #eadbd4;
+  border-radius: 24px;
+  background: #f4e8e2;
+  color: #513c32;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: none;
+  transform: none;
 }
+
 
 .dark-mode {
   background-color: #1e1e1e;
@@ -320,18 +334,7 @@ button:hover {
   background: #2a2a2a;
   color: white;
 }
-.cart-sidebar {
-  position: fixed;
-  top: 0;
-  right: -400px;
-  width: 350px;
-  height: 100vh;
-  overflow-y: auto;
-}
-
-.cart-sidebar.open {
-  right: 0;
-}
+ 
 .cart-item {
   margin-bottom: 15px;
   padding-bottom: 10px;
@@ -417,14 +420,20 @@ html {
   font-size: 22px;
   cursor: pointer;
 }
+
 .notification {
   position: fixed;
-  top: 20px;
-  right: 20px;
-  background: black;
-  color: white;
-  padding: 15px 20px;
-  border-radius: 10px;
-  z-index: 1000;
-  font-weight: bold;
+  top: 90px;
+  right: 24px;
+  max-width: calc(100vw - 48px);
+  box-sizing: border-box;
+  background: #fffdfb;
+  color: #714b3d;
+  padding: 14px 20px;
+  border: 1px solid #eadbd4;
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(50, 35, 25, 0.14);
+  z-index: 3000;
+  font-weight: 600;
+  overflow-wrap: anywhere;
 }

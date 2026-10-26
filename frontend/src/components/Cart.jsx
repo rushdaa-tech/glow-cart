@@ -1,3 +1,4 @@
+import "./Cart.css";
 function Cart({
   cartItems,
   clearCart,
