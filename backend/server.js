@@ -1,23 +1,27 @@
-const authRoutes = require("./routes/auth");
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 require("dotenv").config();
+
+const authRoutes = require("./routes/auth");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
+
+// Home route
+app.get("/", (req, res) => {
+  res.send("GlowCart backend is running!");
+});
+
+// Authentication routes
 app.use("/api/auth", authRoutes);
+
+// 404 handler — must be last
 app.use((req, res) => {
   res.status(404).send(`Route not found: ${req.method} ${req.originalUrl}`);
-});
-console.log("Auth routes loaded:", typeof authRoutes);
-console.log("Express version:", require("express/package.json").version);
-console.log("Auth router stack:", authRoutes.stack?.map(r => r.route?.path));
-app.get("/", (req, res) => {
-  res.send("GlowCart backend is running! ✨");
 });
 
 async function startServer() {

@@ -437,3 +437,64 @@ html {
   font-weight: 600;
   overflow-wrap: anywhere;
 }
+
+/* GlowCart mobile product layout */
+@media (max-width: 600px) {
+  .products {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    padding: 0 12px;
+    margin-top: 24px;
+    box-sizing: border-box;
+  }
+
+  .products .card {
+    width: 100%;
+    min-width: 0;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+
+  .products .card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+  }
+
+  .products .card h3 {
+    font-size: 14px;
+    overflow-wrap: anywhere;
+  }
+
+  .products .card p {
+    font-size: 13px;
+  }
+
+  .products .card button {
+    max-width: 100%;
+    padding: 9px 6px;
+    font-size: 12px;
+  }
+
+  .hero h1 {
+    font-size: 34px;
+  }
+
+  .search-bar {
+    width: calc(100% - 32px);
+    box-sizing: border-box;
+  }
+}
+
+/* Fix product text visibility in dark mode */
+.dark-mode .card h3,
+.dark-mode .card h2,
+.dark-mode .card p {
+  color: #ffffff;
+}
+
+.dark-mode .card {
+  background-color: #2a2a2a;
+  color: #ffffff;
+}

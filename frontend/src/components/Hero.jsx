@@ -1,13 +1,18 @@
+ 
 function Hero() {
+  const handleShopClick = () => {
+    document.getElementById("products")?.scrollIntoView({
+      behavior: "smooth",
+    });
+  };
+
   return (
     <div className="hero">
       <h1>Your everyday glow ritual</h1>
 
-      <p>
-        Where skincare meets self care.
-      </p>
+      <p>Where skincare meets self care.</p>
 
-      <button>Shop Now</button>
+      <button onClick={handleShopClick}>Shop Now</button>
     </div>
   );
 }

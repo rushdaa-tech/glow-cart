@@ -270,7 +270,7 @@ if (showOrderHistory) {
         onChange={(e) => setSearchTerm(e.target.value)}
       />
 
-      <div className="products">
+      <div className="products" id="products">
         {products
           .filter((product) =>
             product.name.toLowerCase().includes(searchTerm.toLowerCase())

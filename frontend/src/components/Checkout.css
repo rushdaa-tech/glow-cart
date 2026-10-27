@@ -1,0 +1,90 @@
+
+.checkout-page {
+  max-width: 550px;
+  width: 90%;
+  margin: 50px auto;
+  padding: 35px;
+  box-sizing: border-box;
+  background: #fffdfb;
+  color: #352a25;
+  border-radius: 24px;
+  box-shadow: 0 8px 28px rgba(50, 35, 25, 0.12);
+  text-align: center;
+}
+
+.checkout-page h1 {
+  color: #352a25;
+  font-size: 42px;
+  margin-bottom: 12px;
+}
+
+.checkout-page h3 {
+  color: #714b3d;
+  font-size: 22px;
+  margin-bottom: 22px;
+}
+
+.checkout-page p {
+  color: #6b5148;
+  font-size: 18px;
+  margin: 8px 0;
+}
+
+.checkout-page h2 {
+  color: #352a25;
+  font-size: 23px;
+  margin: 12px 0 24px;
+}
+
+.checkout-page input {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 14px 0;
+  padding: 14px;
+  background: #ffffff;
+  color: #352a25;
+  border: 1px solid #dfcfc7;
+  border-radius: 12px;
+  font-size: 15px;
+  outline: none;
+}
+
+.checkout-page input::placeholder {
+  color: #88766e;
+  opacity: 1;
+}
+
+.checkout-page input:focus {
+  border-color: #ff4b91;
+  box-shadow: 0 0 0 3px rgba(255, 75, 145, 0.12);
+}
+
+.checkout-page button {
+  margin-top: 4px;
+  padding: 13px 24px;
+  background: #ff4387;
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.checkout-page button:hover {
+  background: #e83275;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 600px) {
+  .checkout-page {
+    padding: 24px 18px;
+    margin: 30px auto;
+  }
+
+  .checkout-page h1 {
+    font-size: 34px;
+  }
+}

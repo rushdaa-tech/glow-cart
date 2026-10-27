@@ -1,4 +1,4 @@
-
+import "./Checkout.css";
 function Checkout({ cartItems, setOrderPlaced }) {
   const total = cartItems.reduce(
     (sum, item) => sum + item.price * item.quantity,

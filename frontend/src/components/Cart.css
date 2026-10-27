@@ -90,3 +90,30 @@
 .cart-sidebar h3 {
   margin-top: 20px;
 }
+
+/* Make cart text clearly visible */
+.cart-sidebar p {
+  color: #4a332d;
+  font-weight: 500;
+  opacity: 1;
+}
+
+/* Empty cart message */
+.cart-sidebar .empty-cart {
+  color: #352a25;
+  font-size: 17px;
+  font-weight: 600;
+  opacity: 1;
+}
+
+/* Fix cart sidebar text visibility */
+.cart-sidebar h2 {
+  color: #352a25 !important;
+  opacity: 1 !important;
+}
+
+.cart-sidebar p {
+  color: #4a332d !important;
+  opacity: 1 !important;
+  font-weight: 500;
+}
